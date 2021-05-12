@@ -2,18 +2,27 @@ import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "./Header";
-
 export default function MovieTime(){
     const { idMovie } = useParams();
-    const [movie, setMovie] = useState([])
+    const [movie, setMovie] = useState([]);
+    const [showtimes, setShowTimes] = useState([]);
 
     useEffect(()=>{
         const promise = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/movies/${idMovie}/showtimes`);
         promise.then((response)=>{
-            console.log(response.data)
-            setMovie(response.data)
+            setMovie(response.data);
+            setShowTimes(response.data.days.map(day=>(day.showtimes)));
+            console.log(response.data.days)
+            console.log(response.data.days.map(day=>(day.showtimes)))
         })
     }, []);
+
+    if(showtimes.length === 0){
+        return(
+            <div>
+            </div>
+        ) 
+    }
 
     return(
         <>
@@ -21,9 +30,23 @@ export default function MovieTime(){
             <div>
                 <h2>Selecione o horário</h2>
             </div>
-            
-            <div>
-            </div>
+            <div className="all-movies">
+                {movie.days.map((days,i)=>(
+                <div className="session-day">
+                    <p>{days.weekday} - {days.date} </p>
+                    <div className="hour-option">
+                        {showtimes[i].map(showtime=>(
+                            <div className="hour-info">
+                                <div>
+                                    <p>{showtime.name}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    
+                </div>
+                ))}
+            </div>      
             <div className="movie-info">
                 <div className="img-position">
                     <img src={movie.posterURL}></img>
@@ -35,3 +58,5 @@ export default function MovieTime(){
         </>
     )
 }
+
+

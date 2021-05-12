@@ -52,6 +52,10 @@ h2{
     width: 90%;
 }
 
+
+/* =================================================================== Movie Hour =================================================================== */
+
+
 .movie-info{
     position: fixed;
     bottom: 0;
@@ -81,4 +85,35 @@ h2{
 .movie-info p{
     font-size: 26px;
     color: #293845;
+}
+
+.all-movies{
+    margin-top: 40px;
+    margin-bottom: 130px;
+}
+
+.session-day{
+    margin-left: 20px;
+}
+.session-day p{
+    margin: 20px 0px;
+}
+.hour-option{
+    display: flex;
+}
+
+.hour-info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 83px;
+    height: 43px;
+    background-color: #E8833A;
+    margin-right: 10px;
+    border-radius: 3px;
+}
+
+.hour-info p{
+    color: #fff;
+    font-size: 18px;
 }
