@@ -48,7 +48,6 @@ export default function MovieTime(){
                             </Link>
                         ))}
                     </div>
-                    
                 </div>
                 ))}
             </div>      

@@ -257,6 +257,18 @@ h3{
 
 /* =================================================================== Finalization =================================================================== */
 
+.all-infos{
+    margin-left: 20px;
+}
+
+.final{
+    margin-top: 85px;
+}
+
+.finalization h3{
+    font-weight: 700;
+}
+
 .finalization h4{
   color: #293845;
   font-size: 24px;

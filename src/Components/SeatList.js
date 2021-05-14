@@ -5,13 +5,11 @@ import { useParams, Link } from "react-router-dom"
 import loading from "../loading.gif"
 
 export default function SeatList({request, setRequest}){
-
     const { idSeat } = useParams();
     const [seats, setSeats] = useState([]);
     const [eachSeat, setEachSeat] = useState([]);
     const [inputValue, setInputValue] = useState("")
     const [inputValueCPF, setInputValueCPF] = useState("")
-
 
     useEffect(()=>{
         const promise = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/showtimes/${idSeat}/seats`);
@@ -51,7 +49,7 @@ export default function SeatList({request, setRequest}){
             }
         })
         const buyerInfo = ({...request, ids: selectedSeats, name: inputValue, cpf: inputValueCPF});
-        setRequest({...request, ids: selectedSeats, seat: selectedNames ,name: inputValue, cpf: inputValueCPF, weekday: seats.day.weekday, title:seats.movie.title, date:seats.name})
+        setRequest({...request, ids: selectedSeats, seat: selectedNames ,name: inputValue, cpf: inputValueCPF, weekday: seats.day.date, title:seats.movie.title, date:seats.name})
         axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/seats/book-many`, buyerInfo);
     }
     
