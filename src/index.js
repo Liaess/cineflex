@@ -1,12 +1,16 @@
 import ReactDOM from "react-dom";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { useState } from "react";
 import "./CSS/reset.css";
 import "./CSS/styles.css"
 import MovieList from "./Components/MovieList";
 import MovieTime from "./Components/MovieTime";
 import SeatList from "./Components/SeatList"
 
+
 function App(){
+    const [request, setRequest] = useState({});
+
     return(
         <>
             <BrowserRouter>
@@ -21,7 +25,13 @@ function App(){
                     </Route>
  
                     <Route path="/assentos/:idSeat" exact>
-                         <SeatList />
+                        <SeatList 
+                            request={request}  setRequest={setRequest}
+                        />
+                    </Route>
+
+                    <Route>
+
                     </Route>
 
                 </Switch>

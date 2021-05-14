@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "./Header";
+import loading from "../loading.gif"
+
 
 export default function MovieList(){
     const [catalog, setCatalog] = useState([]);
@@ -12,6 +14,17 @@ export default function MovieList(){
             setCatalog(response.data)
         })
     }, []);
+
+    if(catalog.length === 0){
+        return(
+            <>
+            <Header />
+            <div>
+                <img className="loading" src={loading} alt="loading"></img>
+            </div>
+            </>
+        ) 
+    }
 
 
     return(

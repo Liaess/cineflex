@@ -2,30 +2,40 @@ import Header from "./Header";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom"
+import loading from "../loading.gif"
 
-export default function SeatList(){
+export default function SeatList({request, setRequest}){
 
     const { idSeat } = useParams();
     const [seats, setSeats] = useState([]);
     const [eachSeat, setEachSeat] = useState([]);
-    const [aaa, setAAA] = useState("each-seat")
 
-    
     useEffect(()=>{
         const promise = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/showtimes/${idSeat}/seats`);
         promise.then(response=>{
             setSeats(response.data);
-            setEachSeat(response.data.seats)
+            setEachSeat(response.data.seats.map((a)=>({...a, isSelected:false})))
         })
-    }, []);
+    }, [idSeat]);
 
     if(seats.length === 0){
         return(
             <div>
+                <img className="loading" src={loading} alt="loading"></img>
             </div>
         ) 
     }
 
+    function Toggle(id){
+        const changeSeat = eachSeat.map((seat)=>{
+            if(seat.id === id && seat.isAvailable){
+                seat.isSelected = !seat.isSelected
+            }
+            return seat
+        })
+        setEachSeat(changeSeat)
+    }
+    
     return(
         <>
             <Header />
@@ -34,13 +44,13 @@ export default function SeatList(){
             </div>
             <div className="seat">
                 {eachSeat.map(seat=>(
-                <div className={`each-seat ${seat.isAvailable ? "selected" : "each-seat"}`} onClick={(e)=>`${seat.isAvailable?alert("Esse assento não está disponível"):""}`}>
+                <div className={`each-seat ${seat.isAvailable ? "color-grey" : "color-orange"} ${seat.isSelected ? "color-green" : ""}  `} onClick={()=>{Toggle(seat.id)}}>
                     <p>{seat.name}</p>
                 </div>
                 ))}
                 <div className="movie-info">
                     <div className="img-position">
-                        <img src={seats.movie.posterURL}></img>
+                        <img src={seats.movie.posterURL} alt={seats.movie.title}></img>
                     </div>
                     <div>
                         <p>{seats.movie.title}</p>
@@ -48,6 +58,17 @@ export default function SeatList(){
                             <p>{seats.day.weekday} - </p><p>{seats.name}</p>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div className="its-avalable">
+                <div className="each-seat color-green">
+                    <p>Selecionado</p>
+                </div>
+                <div className="each-seat color-grey">
+                    <p>Disponível</p>
+                </div>
+                <div className="each-seat color-orange">
+                    <p>Indisponível</p>
                 </div>
             </div>
         </>

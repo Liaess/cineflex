@@ -122,15 +122,16 @@ h2{
     font-size: 18px;
 }
 
+/* =================================================================== Movie Seat =================================================================== */
+
+
 .seat {
     display: flex;
     flex-wrap: wrap;
     margin-top: 20px;
-    margin-right: 5px;
-    margin-left: 5px;
+    justify-content: center;
 }
 .each-seat {
-    background-color: #C3CFD9;
     width: 26px;
     height: 26px;
     border-radius: 13px;
@@ -138,21 +139,55 @@ h2{
     margin-top: 10px;
     border: 1px solid #808f9d;
 }
+
+.color-grey{
+    background-color: #C3CFD9;
+}
+
+.color-orange{
+    background-color: #FBE192;
+}
+
+.color-green{
+    background-color: #8DD7CF;
+}
+
 .each-seat p{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 5px;
+    margin-top: 7px;
+    margin-left: 1px;
+    font-size: 11px;
 }
+
 .movie-info-day{
     display: flex;
     margin-top: 5px;
 }
 
-.selected{
-    background-color: #FBE192;
+.its-avalable{
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
 }
 
-.choice{
-    background-color: #8DD7CF;
+.its-avalable .each-seat{
+    width: 26px;
+    height: 26px;
+    border-radius: 13px;
+    margin: 5px;
+    margin-top: 10px;
+    border: 1px solid #808f9d;
+}
+.its-avalable .each-seat p{
+    margin-top: 28px;
+    font-size: 13px;
+    color: #4E5A65;
+}
+
+.loading{
+    position: fixed;
+    left: 100px;
+    top: 230px;
 }

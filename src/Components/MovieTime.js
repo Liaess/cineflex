@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom"
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "./Header";
+import loading from "../loading.gif"
 
 export default function MovieTime(){
     const { idMovie } = useParams();
@@ -14,12 +15,17 @@ export default function MovieTime(){
             setMovie(response.data);
             setShowTimes(response.data.days.map(day=>(day.showtimes)));
         })
-    }, []);
+    }, [idMovie]);
 
     if(showtimes.length === 0){
         return(
+            <>
+            
+                <Header />
             <div>
+                <img className="loading" src={loading} alt="loading"></img>
             </div>
+            </>
         ) 
     }
 
@@ -48,7 +54,7 @@ export default function MovieTime(){
             </div>      
             <div className="movie-info">
                 <div className="img-position">
-                    <img src={movie.posterURL}></img>
+                    <img src={movie.posterURL} alt={movie.title}></img>
                 </div>
                 <div>
                     <p>{movie.title}</p>
