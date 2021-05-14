@@ -5,7 +5,8 @@ import "./CSS/reset.css";
 import "./CSS/styles.css"
 import MovieList from "./Components/MovieList";
 import MovieTime from "./Components/MovieTime";
-import SeatList from "./Components/SeatList"
+import SeatList from "./Components/SeatList";
+import Sucess from "./Components/Sucess"
 
 
 function App(){
@@ -30,8 +31,8 @@ function App(){
                         />
                     </Route>
 
-                    <Route>
-
+                    <Route path="/sucess" exact>
+                        <Sucess request={request}/>
                     </Route>
 
                 </Switch>
