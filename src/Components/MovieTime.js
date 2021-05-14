@@ -1,7 +1,8 @@
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "./Header";
+
 export default function MovieTime(){
     const { idMovie } = useParams();
     const [movie, setMovie] = useState([]);
@@ -9,11 +10,9 @@ export default function MovieTime(){
 
     useEffect(()=>{
         const promise = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/movies/${idMovie}/showtimes`);
-        promise.then((response)=>{
+        promise.then(response=>{
             setMovie(response.data);
             setShowTimes(response.data.days.map(day=>(day.showtimes)));
-            console.log(response.data.days)
-            console.log(response.data.days.map(day=>(day.showtimes)))
         })
     }, []);
 
@@ -36,11 +35,11 @@ export default function MovieTime(){
                     <p>{days.weekday} - {days.date} </p>
                     <div className="hour-option">
                         {showtimes[i].map(showtime=>(
-                            <div className="hour-info">
-                                <div>
+                            <Link to={`/assentos/${showtime.id}`}>
+                                <div className="hour-info" id={showtime.id}>
                                     <p>{showtime.name}</p>
                                 </div>
-                            </div>
+                            </Link>
                         ))}
                     </div>
                     

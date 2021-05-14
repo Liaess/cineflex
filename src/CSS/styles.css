@@ -95,9 +95,13 @@ h2{
 .session-day{
     margin-left: 20px;
 }
+
 .session-day p{
     margin: 20px 0px;
+    color: #293845;
+    font-size: 20px;
 }
+
 .hour-option{
     display: flex;
 }
@@ -116,4 +120,39 @@ h2{
 .hour-info p{
     color: #fff;
     font-size: 18px;
+}
+
+.seat {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.each-seat {
+    background-color: #C3CFD9;
+    width: 26px;
+    height: 26px;
+    border-radius: 13px;
+    margin: 5px;
+    margin-top: 10px;
+    border: 1px solid #808f9d;
+}
+.each-seat p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+}
+.movie-info-day{
+    display: flex;
+    margin-top: 5px;
+}
+
+.selected{
+    background-color: #FBE192;
+}
+
+.choice{
+    background-color: #8DD7CF;
 }

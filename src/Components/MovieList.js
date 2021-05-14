@@ -3,8 +3,6 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "./Header";
 
-
-
 export default function MovieList(){
     const [catalog, setCatalog] = useState([]);
 

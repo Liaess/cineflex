@@ -4,6 +4,7 @@ import "./CSS/reset.css";
 import "./CSS/styles.css"
 import MovieList from "./Components/MovieList";
 import MovieTime from "./Components/MovieTime";
+import SeatList from "./Components/SeatList"
 
 function App(){
     return(
@@ -12,11 +13,15 @@ function App(){
                 <Switch>
 
                     <Route path="/" exact>
-                        <MovieList />
+                        <MovieList /> 
                     </Route>
 
                     <Route path="/sessoes/:idMovie" exact>
                         <MovieTime />
+                    </Route>
+ 
+                    <Route path="/assentos/:idSeat" exact>
+                         <SeatList />
                     </Route>
 
                 </Switch>
